@@ -2,19 +2,12 @@ import Logo from "./Logo";
 import Navbar from "./Navbar";
 
 const Header = () =>{
-    return <>
+    return <div className="header">
             <Logo/>
             <Navbar></Navbar>
-    </>
+    </div>
 }
 
 export default Header;
 
 
-/**
- *  main 
- *     - App
- *         - Header
- *               - Logo
- *               - Navbar
- */

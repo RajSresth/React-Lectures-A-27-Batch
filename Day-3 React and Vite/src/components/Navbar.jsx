@@ -1,5 +1,10 @@
 const Navbar = () => {
-    return <h2>Navbar</h2>
+    return <div className="navbar">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Career</a>
+                <a href="#">Contact</a>
+    </div>
 }
 
 

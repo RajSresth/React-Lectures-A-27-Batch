@@ -1,0 +1,35 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+    height: fit-content;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 150px;
+    box-shadow: 0px 0px 4px 2px #f0f0f0;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar a{
+    color: black;
+    text-decoration: none;
+    padding: 10px 30px;
+    font-weight: bold;
+}
