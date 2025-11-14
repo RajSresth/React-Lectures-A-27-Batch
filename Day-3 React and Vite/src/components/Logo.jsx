@@ -1,9 +1,9 @@
-import image from "../assets/logo.jpg";
+import image from "../assets/logo.png";
 
 const Logo = () => {
   return (
     <>
-      <img src={image} alt="" style={{ width: "100px", height: "100px" }} />
+      <img src={image} alt="" style={{ width: "80px", height: "80px", objectFit:"cover" }} />
     </>
   );
 };
