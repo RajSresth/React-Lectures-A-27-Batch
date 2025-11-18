@@ -43,13 +43,23 @@ body{
     width: 1300px;
     min-height: calc(100vh - 100px);
     margin: auto;
+}
+
+.center-container .btn button{
+    width: initial;
+    padding: 8px 35px;
+    margin: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.center-container .card-container{
+    min-height: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-
-.center-container .card{
+.center-container .card-container .card{
     width: 250px;
     height: 300px;
     padding: 10px 15px;
@@ -71,6 +81,8 @@ body{
 
 .center-container .card .info{
     height: 35%;
+     display: grid;
+    grid-template-rows: 1fr auto;
 }
 
 .center-container .info h2{
@@ -95,3 +107,5 @@ body{
     background-color: #222;
     color: white;
 }
+
+
