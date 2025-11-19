@@ -7,7 +7,7 @@ const Card = (props) =>{
                     <img src={image} alt="" />
                 </div>
                 <div className="info">
-                    <div claaName="content">
+                    <div className="content">
                         <h2>Product Name:{name}</h2>
                         <h4>Description:{description.split(" ").slice(0,2).join(" ")}</h4>
                         <h5>Price:{price}</h5>     

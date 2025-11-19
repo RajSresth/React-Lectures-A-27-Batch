@@ -109,3 +109,26 @@ body{
 }
 
 
+.loginBtn{
+    background-color: darkgreen;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    padding: 8px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.logoutBtn{
+    background-color: rgb(137, 5, 31);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    padding: 8px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+}

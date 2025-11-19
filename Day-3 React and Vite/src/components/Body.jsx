@@ -3,19 +3,19 @@ import Card from "./Card";
 import { config } from "../constants/constant";
 
 const Body = () => {
-  const [reactCount,setreactCount] = useState(0);
-
-  const handleClick = () =>{
-    count++;
-    console.log("count:",count); // 1
+  const [count, setCount] = useState(0); 
+    
+  const increment = ()=>{
+    setCount(count + 1);
   }
-  
+
+ 
   return (
     <div>      
       <div className="center-container">
         <div className="btn">
-          <h2>Count: {reactCount}</h2> 
-          <button onClick={handleClick}>Click</button>
+          <h1>Count: {count}</h1>
+          <button onClick={increment} >Click</button>
         </div>  
 
         <div className="card-container">
