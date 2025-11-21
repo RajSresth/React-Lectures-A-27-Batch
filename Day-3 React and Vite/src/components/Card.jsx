@@ -1,6 +1,7 @@
 const Card = (props) =>{
 
     const {name,description,image, price} = props.item;
+    console.log("Card Render");
 
     return <div className="card">
                 <div className="profile">

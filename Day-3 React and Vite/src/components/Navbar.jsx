@@ -2,8 +2,11 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [isLogin, setisLogin] = useState(false); // const isLogin = false
-  const task = () => setisLogin(!isLogin);
-  console.log("navbar:Render");
+  
+
+  const handleLogin = ()=> setisLogin(!isLogin);
+  const handleLogout = ()=> setisLogin(!isLogin);
+
 
   return (
     <div className="navbar">
@@ -11,9 +14,10 @@ const Navbar = () => {
       <a href="#">About</a>
       <a href="#">Career</a>
       <a href="#">Contact</a>
-      <button className={isLogin ? "logoutBtn" : "loginBtn"} onClick={task}>
-        {isLogin ? "Logout" : "Login"}
-      </button>
+      { isLogin ?
+         <button onClick={handleLogout} className="logoutBtn">Logout</button> : 
+         <button onClick={handleLogin} className="loginBtn">Login</button>
+      }        
     </div>
   );
 };

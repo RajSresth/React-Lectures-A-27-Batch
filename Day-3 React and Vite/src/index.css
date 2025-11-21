@@ -132,3 +132,23 @@ body{
     border-radius: 8px;
     cursor: pointer;
 }
+
+
+.shimmer-container{
+    width: 1300px;
+    min-height: calc(100vh - 100px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.shimmer-container .shimmerCard{
+    width: 250px;
+    height: 300px;
+    padding: 10px 15px;
+    box-shadow: 0px 0px 4px 1px #e0dede;
+    border-radius: 7px;
+    background-color: #d0cfcf;
+}

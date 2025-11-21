@@ -1,27 +1,38 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Card from "./Card";
-import { config } from "../constants/constant";
+import Shimmer from './Shimmer';
+import { getProducts } from "../services/api";
 
 const Body = () => {
-  const [count, setCount] = useState(0); 
-    
-  const increment = ()=>{
-    setCount(count + 1);
-  }
+  const [productList, setProductList] = useState([])
 
+  const load = async ()=>{
+           const  products = await getProducts("/api/products") ; 
+
+          
+          setProductList(products);
+      }
+
+  useEffect( ()=>{   
+      load()
+  },[]);
+    
+  
+
+  console.log("Body Render");
+  if(productList.length === 0)
+  {
+    return <Shimmer></Shimmer>
+  }
+  
  
   return (
     <div>      
       <div className="center-container">
-        <div className="btn">
-          <h1>Count: {count}</h1>
-          <button onClick={increment} >Click</button>
-        </div>  
-
         <div className="card-container">
-              {config.map((element, index) => {
+              {productList.map((element, index) => {
               return <Card key={index} item={element} />;
-            })}
+            })}            
         </div>
       </div>
     </div>
