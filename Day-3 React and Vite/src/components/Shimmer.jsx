@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 const Shimmer = () => {
   return (
-   <div>
+   <Fragment>
          <div className='shimmer-container'>
             {new Array(4).fill("").map((element,index) => <div key={index} className="shimmerCard"></div>)}
         </div>
-   </div>
+   </Fragment>
   )
 }
 

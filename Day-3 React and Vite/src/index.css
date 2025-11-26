@@ -42,7 +42,9 @@ body{
 .center-container{
     width: 1300px;
     min-height: calc(100vh - 100px);
+    height: fit-content;
     margin: auto;
+    padding: 20px;
 }
 
 .center-container .btn button{
@@ -54,9 +56,11 @@ body{
 }
 .center-container .card-container{
     min-height: inherit;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .center-container .card-container .card{
@@ -152,3 +156,29 @@ body{
     border-radius: 7px;
     background-color: #d0cfcf;
 }
+
+
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-container button{
+    width: initial;
+    padding: 8px 45px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+    

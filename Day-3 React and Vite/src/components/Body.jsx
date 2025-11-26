@@ -1,41 +1,63 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import Card from "./Card";
 import Shimmer from './Shimmer';
-import { getProducts } from "../services/api";
+import { getProducts, postProducts,deleteProduct } from "../services/api";
 
 const Body = () => {
   const [productList, setProductList] = useState([])
 
   const load = async ()=>{
-           const  products = await getProducts("/api/products") ; 
-
-          
+           const  products = await getProducts("/api/products") ;           
           setProductList(products);
       }
 
   useEffect( ()=>{   
-      load()
-  },[]);
+      load()    // get request
+    },[]);
     
-  
+    const handlePost = async ()=>{
+          const newProduct = {
+                      id: 5,
+                      name: "Air Buds",
+                      image:
+                        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSA7rusF9rOr-xyMlncnq7MM9VBQQNJWqDIVlzWhjE2-80Telk9H_3kWjaxeC9RSHPu0goCtBCdnHLffw_dsSfFHU-xcWF6w3lCfK5g85nfWHUUG46H-9KA0A",
+                      price: 11900,
+                      description: "Apple AirPods Pro with MagSafe Charging Case",
+                      rating: 4.7,
+                    }
 
-  console.log("Body Render");
-  if(productList.length === 0)
-  {
-    return <Shimmer></Shimmer>
-  }
-  
+          const  msg = await postProducts("/api/products",newProduct);   
+          console.log(msg);
+          load()
+    }
+    
+    const handleDelete = async ()=>{
+        const msg = await deleteProduct("/api/products",5)
+        console.log(msg);
+        load()
+    }
+
  
   return (
-    <div>      
+    <>      
       <div className="center-container">
-        <div className="card-container">
-              {productList.map((element, index) => {
-              return <Card key={index} item={element} />;
-            })}            
-        </div>
+        {productList.length === 0 ?
+            <Shimmer></Shimmer> : 
+            <div className="card-container">
+              {
+                productList.map((element, index) => {
+                      return <Card key={index} item={element} />;
+                 })
+              }            
+            </div>
+         }
+
+         <div className="btn-container">
+                <button onClick={handlePost}>POST</button>
+                <button onClick={handleDelete}>Delete</button>
+         </div>
       </div>
-    </div>
+    </>
   );
 };
 
