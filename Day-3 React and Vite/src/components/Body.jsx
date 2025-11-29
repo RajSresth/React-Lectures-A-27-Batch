@@ -1,7 +1,7 @@
 import { useEffect, useState} from "react";
 import Card from "./Card";
 import Shimmer from './Shimmer';
-import { getProducts, postProducts,deleteProduct } from "../services/api";
+import { getProducts } from "../services/api2";
 
 const Body = () => {
   const [productList, setProductList] = useState([])
