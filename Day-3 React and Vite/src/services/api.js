@@ -33,4 +33,16 @@ export const deleteProduct = async (endPoint, id) => {
   return await response.json();
 };
 
+// PUT Request
+export const replaceProduct = async (endPoint,id,obj)=>{
+  const response = await fetch(`${BASE_URL}${endPoint}/${id}`,{
+    method:'PUT',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    body:JSON.stringify(obj)
+  })
+
+  return await response.json();
+}
 

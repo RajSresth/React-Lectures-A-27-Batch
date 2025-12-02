@@ -6,7 +6,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-// Inline data
+// Inline database
 let config = [
   {
     id: 1,
@@ -73,6 +73,13 @@ app.delete("/api/products/:id", (req, res) => {
 
   res.status(200).json({ msg: "Product deleted successfully" });
 });
+
+app.put("/api/products/:id",(req,res) =>{
+  const id  = +req.params.id;
+  const index = config.findIndex(element => element.id === id);
+  config[0] = req.body;
+  res.status(201).json({ msg: "Product Updated successfully" });
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
