@@ -75,9 +75,16 @@ app.delete("/api/products/:id", (req, res) => {
 });
 
 app.put("/api/products/:id",(req,res) =>{
-  const id  = +req.params.id;
-  const index = config.findIndex(element => element.id === id);
-  config[0] = req.body;
+  const productId  = +req.params.id;
+  const index = config.findIndex(element => element.id === productId);
+  config[index] = req.body;
+  res.status(201).json({ msg: "Product Updated successfully" });
+})
+
+app.patch("/api/products/:id",(req,res) =>{
+  const productId  = +req.params.id;
+  const product = config.find(element => element.id === productId);
+  product.description = req.body.description;
   res.status(201).json({ msg: "Product Updated successfully" });
 })
 

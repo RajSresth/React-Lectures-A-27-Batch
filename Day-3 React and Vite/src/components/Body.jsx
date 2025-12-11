@@ -1,8 +1,8 @@
 import { useEffect, useState} from "react";
 import Card from "./Card";
 import Shimmer from './Shimmer';
-import { getProducts,postProducts,deleteProduct } from "../services/api2";
-import { replaceProduct} from "../services/api";
+import { getProducts,postProducts,deleteProduct, replaceProduct, updateProduct } from "../services/api2";
+// import { replaceProduct} from "../services/api";
 
 const Body = () => {
   const [productList, setProductList] = useState([])
@@ -49,9 +49,17 @@ const Body = () => {
                       description: "Apple AirPods Pro with MagSafe Charging Case",
                       rating: 4.7,
                     }
-       const msg = await replaceProduct("/api/products",1,newProduct )
+       const msg = await replaceProduct("/api/products",3,newProduct )
        console.log("msg:",msg);
        load()
+    }
+
+
+    const  handleUpdate = async () => {
+          const description = {description : "Bla Bla Bla..."}
+          const msg = await updateProduct("/api/products",1,description)
+          console.log("msg:",msg);
+          load()
     }
 
  
@@ -73,6 +81,7 @@ const Body = () => {
                 <button onClick={handlePost}>POST</button>
                 <button onClick={handleDelete}>Delete</button>
                 <button onClick={handleReplace}>PUT</button>
+                <button onClick={handleUpdate}>PATCH</button>
          </div>
       </div>
     </>
