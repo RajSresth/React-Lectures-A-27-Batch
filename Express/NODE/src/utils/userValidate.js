@@ -1,13 +1,13 @@
 import validate from "validator";
 
 
-
+// firstName = ""
 export const userValidate = ({firstName,lastName, email,password})=>{
     if(!firstName || !email || !password){
         return false;
     }
 
-    if(firstName.length < 2 && firstName.length > 18){
+    if(!validate.isLength(firstName,{min:2, max:18})){
         return false
     }
 
