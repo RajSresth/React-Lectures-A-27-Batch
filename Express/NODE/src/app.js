@@ -9,20 +9,21 @@ dotenv.config();
 
 // Global Middleware
 app.use(express.json());
-app.use(session({
-    name:"sessionId",
-    secret: process.env.SECRET_KEY ,
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-        httpOnly:true,
-        maxAge: 60000,
-        sameSite:'lax',
-        path:"/",
-        priority:"high",
-        secure:false
-    }
-}))
+
+// app.use(session({
+//     name:"sessionId",
+//     secret: process.env.SECRET_KEY ,
+//     resave:false,
+//     saveUninitialized:false,
+//     cookie:{
+//         httpOnly:true,
+//         maxAge: 60000,
+//         sameSite:'lax',
+//         path:"/",
+//         priority:"high",
+//         secure:false
+//     }
+// }))
 
 app.use("/api/v1", userRoutes);
 
