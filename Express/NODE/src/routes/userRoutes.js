@@ -1,53 +1,77 @@
 import express from "express";
-import {userValidate} from "../utils/userValidate.js"
-import {isAuthenticated as auth} from "../middleware/auth.js"
-import {User} from "../model/userModel.js"
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { userValidate } from "../utils/userValidate.js";
+import { User } from "../model/userModel.js";
+
 
 const router = express.Router();
 
+router.post("/login", async (req, res) => {
+  try {
+    const {email, password } = req.body;
 
+    // find in db
+    const user = await User.findOne({email:email});
 
-router.post("/login", (req,res)=>{
-    const {email,password} = req.body;
+      if(!user)
+      {
+        throw new Error("Invalid Email..!!");      
+      }
+     
+      const isValidPassword = await bcrypt.compare(password ,user.password);
+      
+      if(!isValidPassword){
+       throw new Error("Invalid Password..!!");   
+      }else{
+        // Generate jwt token
+        console.log("Secret Key",process.env.JWT_SECRET_KEY);
 
-   
+        const jwtToken = jwt.sign({
+                                id:user._id,
+                                firstName:user.firstName
+                              },process.env.JWT_SECRET_KEY, {expiresIn:'1m'});
+        console.log("jwtToken:",jwtToken);
 
-    
-    req.session.user = {emailId:email};
-    res.status(200).send({
-                            success: true, 
-                            msg:"Login Successfull"
-                        });
-})
+        res.cookie("token",jwtToken,{httpOnly:true,priority:"high"});
 
+          return res.status(200).json({
+                        success: true,
+                        msg: "Login Successfull",
+                      });
+      }
 
-router.post("/signin",async (req,res)=>{
+     
+  } catch (error) {
+      return res.status(400).json({
+              success: false,
+              msg: `ERROR: ${error.message}`,
+            }) 
+  }
+});
+
+router.post("/signin", async (req, res) => {
+  try {
+    // 1. check req.body Validation
     const isValidated = userValidate(req.body);
-    if(!isValidated){
-        return res.status(404).json({success: false,msg:"Invalid Credentials"})
-    }
-    const {firstName, lastName, email, password} = req.body;
+
+    const { firstName, lastName, email, password } = req.body;
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
     const user = new User({
-        firstName:firstName,
-        lastName:lastName,
-        email:email,
-        password:password
-    })
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: passwordHash,
+    });
+    
     await user.save();
-    res.status(200).send({msg:"Signin Successfull"});
-})
+    return res.status(200).json({success:true, msg: "Signin Successfull" });
+  } catch (err) {
+    return res.status(400).json({ success: false, msg:`ERROR: ${err.message}`});
+  }
+});
 
-router.get("/profile",auth,(req,res)=>{  
-    console.log("Profile Route")
-    res.status(200).json({success : true, msg:"Profile Page"});
-})
-
-router.get("/feed",auth,(req,res)=>{   
-    res.status(200).json({success : true, msg:"Profile Page"});
-})
 
 export default router;
-
-
-
-
