@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 4000;
 
 
 // Databse connection call
-connectDB()
+await connectDB()
     
     
 // Server connection call

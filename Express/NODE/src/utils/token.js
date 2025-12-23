@@ -23,5 +23,9 @@ export const generateRefreshToken = ({_id},secret)=>{
 
 
 export const verifyAccessToken = (token,secret) =>{
-    return jwt.verify(token,secret)
+    return jwt.verify(token,secret);
+}
+
+export const verifyRefreshToken = (token,secret) =>{
+    return jwt.verify(token,secret);
 }

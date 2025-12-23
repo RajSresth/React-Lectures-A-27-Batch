@@ -1,8 +1,8 @@
 import { verifyAccessToken } from "../utils/token.js";
 
 export const auth = (req, res, next) => {
-  const accessToken =
-    req.headers["authorization"]?.split(" ")[1] || req.cookie?.accessToken;
+  const accessToken =   req.headers["authorization"]?.split(" ")[1] 
+  
   console.log("accessToken:", accessToken);
 
   if (!accessToken) {
@@ -11,6 +11,7 @@ export const auth = (req, res, next) => {
       msg: "Unauthorized User, Please Login",
     });
   }
+
   try {
     const decoded = verifyAccessToken(
       accessToken,
@@ -19,11 +20,11 @@ export const auth = (req, res, next) => {
 
     console.log("decoded:", decoded);
     req.user = decoded;
-    next();
+    return next();
   } catch (error) {
     return res.status(500).json({
       success: false,
-      msg: "Internal Server Erro",
+      msg: "Internal Server Error",
     });
   }
 };

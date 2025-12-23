@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 export const generateHashPassword = async (password)=>{
-    return await bcrypt.hash(password ,10)
+    return await bcrypt.hash(password ,10);
 }
 
 

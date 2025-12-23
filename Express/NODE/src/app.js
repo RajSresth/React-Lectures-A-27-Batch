@@ -10,5 +10,4 @@ app.use("/auth/user", userRoutes);
 app.use("/user",userRoutes);
 
 
-
 export default app;
