@@ -5,6 +5,8 @@ const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
+    minLength: 2,
+    maxLength: 20,
   },
   lastName: {
     type: String,
@@ -14,10 +16,27 @@ const userSchema = new Schema({
     required: true,
     unique: true,
     lowercase: true,
+    trim: true,
   },
   password: {
     type: String,
     required: true,
+  },
+  emailVerified: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+  },
+  verificationTokenExpires: {
+    type: Date,
+  },
+  otp: {
+    type: String,
+  },
+  otpExpires: {
+    type: Date,
   },
 });
 
