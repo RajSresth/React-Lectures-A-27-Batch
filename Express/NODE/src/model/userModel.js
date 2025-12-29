@@ -38,6 +38,10 @@ const userSchema = new Schema({
   otpExpires: {
     type: Date,
   },
+  twoFactor: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export const User = mongoose.model("User", userSchema);
