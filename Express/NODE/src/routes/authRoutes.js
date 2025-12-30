@@ -16,10 +16,9 @@ router.post("/register", registerUser);
 router.get("/verifyEmail/:token", verifiyEmail);
 router.post("/verifyOtp", verifyOtp);
 router.post("/login", loginUser);
-router.post("/forgetPassword", resetPassword);
+// router.post("/forgetPassword", resetPassword);
 router.get("/logout", logoutUser);
-
-router.get("/profile", auth, getProfile);
 router.get("/refresh-token", getNewAccessToken);
+
 
 export default router;

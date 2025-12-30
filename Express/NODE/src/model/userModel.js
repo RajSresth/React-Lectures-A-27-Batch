@@ -28,6 +28,8 @@ const userSchema = new Schema({
   },
   verificationToken: {
     type: String,
+    unique:true,
+    sparse: true
   },
   verificationTokenExpires: {
     type: Date,
@@ -42,6 +44,10 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  role:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Role'
+  }
 });
 
 export const User = mongoose.model("User", userSchema);

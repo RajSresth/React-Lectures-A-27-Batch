@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-
 export const emailSend = async (to,subject,html) => {
     const transport = nodemailer.createTransport({
                 service:'gmail',
@@ -9,7 +8,6 @@ export const emailSend = async (to,subject,html) => {
                     pass:process.env.EMAIL_PASSWORD
                 }
             });
-
     try{
        transport.sendMail( {
                 from:process.env.EMAIL,
